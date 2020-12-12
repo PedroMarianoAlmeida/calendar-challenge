@@ -1,5 +1,5 @@
 //Next and React components and functions
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 //Third part Components
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -7,8 +7,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 //My Components
 import NewEventFormBody from '../NewEventForm/NewEventFormBody';
 import NewEventFormSubmitButton from './../NewEventForm/NewEventFormSubmitButton';
+import { EventContext } from './../../contexts/EventContext';
 
 const CalendarDay = (props) => {
+    const { eventsList } = useContext(EventContext);
+    const eventsInThisDay = eventsList.filter(event => event.day === props.day);
+    console.log( `events day ${props.day}: `, eventsInThisDay )
+    
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
@@ -28,7 +33,7 @@ const CalendarDay = (props) => {
 
         <style jsx>{`                
             td:hover {
-                cursor: cell;
+                cursor: crosshair;
             }
         `}</style>
     </>;

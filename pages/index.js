@@ -26,6 +26,7 @@ export default function Home() {
                 <td>29</td>
                 <td>30</td>
                 <CalendarDay day={1}/>
+                <CalendarDay day={2}/>
                 <td>2</td>
                 <td>3</td>
                 <td>4</td>
