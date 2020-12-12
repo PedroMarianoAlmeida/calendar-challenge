@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Form, FormGroup, Label, Input, Tooltip } from 'reactstrap';
 
-const NewEventForm = () => {
+const NewEventFormBody = () => {
     const [eventDescription, setEventDescription] = useState('');
     const [descriptionLengthReached, setDescriptionLengthReached] = useState(false);
 
@@ -60,7 +60,7 @@ const NewEventForm = () => {
                         placeholder="Eg.: Quito, Rio de Janeiro, New York" 
                         className='form-control' 
                         value={city}
-                        onChange={(e) => setCityTime(e.target.value)}
+                        onChange={(e) => setCity(e.target.value)}
                     />
                 </div>
             </FormGroup>
@@ -69,4 +69,4 @@ const NewEventForm = () => {
     );
 }
 
-export default NewEventForm;
+export default NewEventFormBody;

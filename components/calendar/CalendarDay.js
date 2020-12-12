@@ -1,8 +1,12 @@
+//Next and React components and functions
 import { useState } from 'react';
 
+//Third part Components
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-import NewEventForm from './../NewEventForm';
+//My Components
+import NewEventFormBody from '../NewEventForm/NewEventFormBody';
+import NewEventFormSubmitButton from './../NewEventForm/NewEventFormSubmitButton';
 
 const CalendarDay = (props) => {
     const [modal, setModal] = useState(false);
@@ -14,10 +18,10 @@ const CalendarDay = (props) => {
         <Modal isOpen={modal} toggle={toggle}>
             <ModalHeader toggle={toggle}>Reminder day {props.day}</ModalHeader>
             <ModalBody>
-                <NewEventForm />
+                <NewEventFormBody />
             </ModalBody>
             <ModalFooter>
-                <Button color="primary" onClick={toggle}>Add Event</Button>{' '}
+                <NewEventFormSubmitButton toggle={toggle}/>
                 <Button color="secondary" onClick={toggle}>Cancel</Button>
             </ModalFooter>
         </Modal>
