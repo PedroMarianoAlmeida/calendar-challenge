@@ -7,6 +7,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 //My Components
 import NewEventFormBody from '../NewEventForm/NewEventFormBody';
 import NewEventFormSubmitButton from './../NewEventForm/NewEventFormSubmitButton';
+import EventSummary from './../ExistentEvent/EventSummary';
 import { EventContext } from './../../contexts/EventContext';
 
 const CalendarDay = (props) => {
@@ -18,7 +19,10 @@ const CalendarDay = (props) => {
     const toggle = () => setModal(!modal);
 
     return <>
-        <td onClick={() => setModal(true)} className='p-5 border'>{props.day}</td>
+        <td onClick={() => setModal(true)} className='border'>
+            <strong>{props.day}</strong>
+            {eventsInThisDay.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}           
+        </td>
 
         <Modal isOpen={modal} toggle={toggle}>
             <ModalHeader toggle={toggle}>Reminder day {props.day}</ModalHeader>

@@ -27,7 +27,6 @@ export default function Home() {
                 <td>30</td>
                 <CalendarDay day={1}/>
                 <CalendarDay day={2}/>
-                <td>2</td>
                 <td>3</td>
                 <td>4</td>
                 <td>5</td>
