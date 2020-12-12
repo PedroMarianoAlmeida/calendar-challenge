@@ -12,10 +12,13 @@ const NewEventForm = () => {
         setEventDescription(e.target.value);
     }
 
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [city, setCity] = useState('');
+
     return (
         <Form>
             <FormGroup>
-
                 <div className='mb-4'>
                     <Label >Description <small id='max-length-warning'>(max 30 chars)</small></Label>
                     <Tooltip placement="right" isOpen={descriptionLengthReached} target="max-length-warning">
@@ -35,7 +38,8 @@ const NewEventForm = () => {
                     <Input
                         type="time"
                         placeholder="time placeholder"
-
+                        value={startTime}
+                        onChange={(e) => setStartTime(e.target.value)}
                     />
                 </div>
 
@@ -44,12 +48,20 @@ const NewEventForm = () => {
                     <Input
                         type="time"
                         placeholder="time placeholder"
+                        value={endTime}
+                        onChange={(e) => setEndTime(e.target.value)}
                     />
                 </div>
 
                 <div>
                     <Label>City</Label>
-                    <input type='text' placeholder="Eg.: Quito, Rio de Janeiro, New York" className='form-control' />
+                    <input 
+                        type='text' 
+                        placeholder="Eg.: Quito, Rio de Janeiro, New York" 
+                        className='form-control' 
+                        value={city}
+                        onChange={(e) => setCityTime(e.target.value)}
+                    />
                 </div>
             </FormGroup>
 
