@@ -7,7 +7,7 @@ import { Form, FormGroup, Label, Input, Tooltip } from 'reactstrap';
 //My components
 import { EventContext } from './../../contexts/EventContext';
 
-const NewEventFormBody = () => {  
+const NewEventFormBody = (props) => {  
     const { currentEvent, setCurrentEvent } = useContext(EventContext);
     
     const [eventDescription, setEventDescription] = useState(currentEvent.description);
@@ -29,7 +29,8 @@ const NewEventFormBody = () => {
             description: eventDescription,
             start: startTime,
             end: endTime,
-            city: city
+            city: city,
+            day: props.day
         }) 
     }, [eventDescription, startTime, endTime, city])
 

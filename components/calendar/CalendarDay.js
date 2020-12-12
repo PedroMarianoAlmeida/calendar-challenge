@@ -18,7 +18,7 @@ const CalendarDay = (props) => {
         <Modal isOpen={modal} toggle={toggle}>
             <ModalHeader toggle={toggle}>Reminder day {props.day}</ModalHeader>
             <ModalBody>
-                <NewEventFormBody />
+                <NewEventFormBody day={props.day}/>
             </ModalBody>
             <ModalFooter>
                 <NewEventFormSubmitButton toggle={toggle}/>
