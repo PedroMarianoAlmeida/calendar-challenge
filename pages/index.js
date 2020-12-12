@@ -1,13 +1,16 @@
+//Next and React components/functions
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+
+//Third part components
 import { Container, Table } from 'reactstrap';
 
 //My components
 import CalendarHead from './../components/calendar/CalendarHead';
+import CalendarDay from './../components/calendar/CalendarDay';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Calendar Chalenge</title>
         <link rel="icon" href="/favicon.ico" />
@@ -22,7 +25,7 @@ export default function Home() {
               <tr className='text-center'>
                 <td>29</td>
                 <td>30</td>
-                <td>1</td>
+                <CalendarDay />
                 <td>2</td>
                 <td>3</td>
                 <td>4</td>
