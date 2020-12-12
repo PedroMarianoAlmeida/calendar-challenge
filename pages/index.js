@@ -2,6 +2,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { Container, Table } from 'reactstrap';
 
+//My components
+import CalendarHead from './../components/calendar/CalendarHead';
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,20 +16,10 @@ export default function Home() {
       <main>
         <Container>
           <Table>
-            <thead>
-              <tr className='bg-primary text-white'>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-              </tr>
-            </thead>
+            <CalendarHead />
 
             <tbody>
-              <tr>
+              <tr className='text-center'>
                 <td>29</td>
                 <td>30</td>
                 <td>1</td>
