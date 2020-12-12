@@ -8,7 +8,7 @@ import { Button } from 'reactstrap';
 import { EventContext } from './../../contexts/EventContext';
 
 const NewEventFormSubmitButton = (props) => {
-    const { currentEvent } = useContext(EventContext);
+    const { currentEvent, setCurrentEvent, eventsList, setEventsList } = useContext(EventContext);
     const [ disableSubmit, setDisableSubmit ] = useState(true);
 
     useEffect(() => {
@@ -19,13 +19,14 @@ const NewEventFormSubmitButton = (props) => {
         const cityEmpty = Boolean(currentEvent.city === '');
 
         setDisableSubmit(descriptionLong || descriptionEmpty || startEmpty || endEmpty || cityEmpty);
-
-        console.log(descriptionEmpty, currentEvent, startEmpty, endEmpty, cityEmpty);
     }, [currentEvent])
 
     const handleClick = () => {
         console.log(currentEvent);
-        //props.toggle();
+        const newEventList = [...eventsList, currentEvent];
+        setEventsList(newEventList);
+        setCurrentEvent( {description: '', start:'', end:'', city:''} );        
+        props.toggle();
     }
 
     return ( 
