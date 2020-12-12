@@ -1,5 +1,5 @@
 //React and Next components and Functions
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 //Third part components
 import { Button } from 'reactstrap';
@@ -9,7 +9,19 @@ import { EventContext } from './../../contexts/EventContext';
 
 const NewEventFormSubmitButton = (props) => {
     const { currentEvent } = useContext(EventContext);
-    //console.log(currentEvent);
+    const [ disableSubmit, setDisableSubmit ] = useState(true);
+
+    useEffect(() => {
+        const descriptionEmpty = Boolean(currentEvent.description === '');
+        const descriptionLong = currentEvent.description.length > 30;
+        const startEmpty = Boolean(currentEvent.start === '');
+        const endEmpty = Boolean(currentEvent.end === '');
+        const cityEmpty = Boolean(currentEvent.city === '');
+
+        setDisableSubmit(descriptionLong || descriptionEmpty || startEmpty || endEmpty || cityEmpty);
+
+        console.log(descriptionEmpty, currentEvent, startEmpty, endEmpty, cityEmpty);
+    }, [currentEvent])
 
     const handleClick = () => {
         console.log(currentEvent);
@@ -20,6 +32,7 @@ const NewEventFormSubmitButton = (props) => {
         <Button 
             color="primary" 
             onClick={handleClick}
+            disabled={disableSubmit}
         >
             Add Event
         </Button>
