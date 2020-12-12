@@ -9,12 +9,17 @@ import { EventContext } from './../../contexts/EventContext';
 
 const NewEventFormSubmitButton = (props) => {
     const { currentEvent } = useContext(EventContext);
-    console.log(currentEvent);
+    //console.log(currentEvent);
+
+    const handleClick = () => {
+        console.log(currentEvent);
+        //props.toggle();
+    }
 
     return ( 
         <Button 
             color="primary" 
-            onClick={props.toggle}
+            onClick={handleClick}
         >
             Add Event
         </Button>

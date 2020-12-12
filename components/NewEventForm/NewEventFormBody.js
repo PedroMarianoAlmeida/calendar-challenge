@@ -1,9 +1,16 @@
-import { useState } from 'react';
+//React and Next components and Functions
+import { useState, useEffect, useContext } from 'react';
 
+//Third part components
 import { Form, FormGroup, Label, Input, Tooltip } from 'reactstrap';
 
-const NewEventFormBody = () => {
-    const [eventDescription, setEventDescription] = useState('');
+//My components
+import { EventContext } from './../../contexts/EventContext';
+
+const NewEventFormBody = () => {  
+    const { currentEvent, setCurrentEvent } = useContext(EventContext);
+    
+    const [eventDescription, setEventDescription] = useState(currentEvent.description);
     const [descriptionLengthReached, setDescriptionLengthReached] = useState(false);
 
     const handleEventDescriptionChange = (e) => {
@@ -12,9 +19,19 @@ const NewEventFormBody = () => {
         setEventDescription(e.target.value);
     }
 
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
-    const [city, setCity] = useState('');
+    const [ startTime, setStartTime ] = useState(currentEvent.start);
+    const [ endTime, setEndTime ] = useState(currentEvent.end);
+    const [ city, setCity ] = useState(currentEvent.city);
+
+    //Update currentEvent contexts with the Form data    
+    useEffect(() => {
+        setCurrentEvent({
+            description: eventDescription,
+            start: startTime,
+            end: endTime,
+            city: city
+        }) 
+    }, [eventDescription, startTime, endTime, city])
 
     return (
         <Form>
