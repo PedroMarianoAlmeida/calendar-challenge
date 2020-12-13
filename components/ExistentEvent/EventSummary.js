@@ -14,7 +14,12 @@ const EventSummary = (props) => {
 
     return (
         <>
-            <Button id={identifier} type="button" onClick={(e) => e.stopPropagation()}>
+            <Button 
+                id={identifier} 
+                type="button" 
+                onClick={(e) => e.stopPropagation()}
+                className='my-1'
+            >
                 {sumaryTextBox}
             </Button>
 

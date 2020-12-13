@@ -10,10 +10,18 @@ import NewEventFormSubmitButton from './../NewEventForm/NewEventFormSubmitButton
 import EventSummary from './../ExistentEvent/EventSummary';
 import { EventContext } from './../../contexts/EventContext';
 
+//Source: https://stackoverflow.com/a/36351753/12828114
+const convertHourToDecimal = (timeHourFormat) => {
+    let hoursMinutes = timeHourFormat.split(/[.:]/);
+    let hours = parseInt(hoursMinutes[0], 10);
+    let minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+    return hours + minutes / 60;
+}
+
 const CalendarDay = (props) => {
     const { eventsList } = useContext(EventContext);
     const eventsInThisDay = eventsList.filter(event => event.day === props.day);
-    console.log( `events day ${props.day}: `, eventsInThisDay )
+    const eventsSorted = eventsInThisDay.sort( (a, b) => convertHourToDecimal(a.start) - convertHourToDecimal(b.start));
     
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -21,7 +29,7 @@ const CalendarDay = (props) => {
     return <>
         <td onClick={() => setModal(true)} className='border'>
             <strong>{props.day}</strong>
-            {eventsInThisDay.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}           
+            {eventsSorted.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}           
         </td>
 
         <Modal isOpen={modal} toggle={toggle}>
