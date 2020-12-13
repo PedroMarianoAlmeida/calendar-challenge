@@ -18,7 +18,8 @@ const EventSummary = (props) => {
                 id={identifier} 
                 type="button" 
                 onClick={(e) => e.stopPropagation()}
-                className='my-1'
+                className='my-1 border-0 w-100'
+                style={{ backgroundColor: props.event.color }}
             >
                 {sumaryTextBox}
             </Button>
