@@ -25,7 +25,8 @@ const NewEventFormSubmitButton = (props) => {
         console.log(currentEvent);
         const newEventList = [...eventsList, currentEvent];
         setEventsList(newEventList);
-        setCurrentEvent( {description: '', start:'', end:'', city:''} );        
+        //Put this code line in the Context as "Clear Current Event"
+        setCurrentEvent( {description: '', start:'', end:'', city:'', color:'blue'} );        
         props.toggle();
     }
 

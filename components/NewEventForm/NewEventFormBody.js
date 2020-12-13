@@ -22,17 +22,20 @@ const NewEventFormBody = (props) => {
     const [ startTime, setStartTime ] = useState(currentEvent.start);
     const [ endTime, setEndTime ] = useState(currentEvent.end);
     const [ city, setCity ] = useState(currentEvent.city);
+    const [ color, setColor ] = useState(currentEvent.color);
 
     //Update currentEvent contexts with the Form data    
     useEffect(() => {
         setCurrentEvent({
             description: eventDescription,
             start: startTime,
-            end: endTime,
+            end: endTime, //It is needed to validated if endTime is later than startTime
             city: city,
+            color: color,
             day: props.day
-        }) 
-    }, [eventDescription, startTime, endTime, city])
+        })
+
+    }, [eventDescription, startTime, endTime, city, color])
 
     return (
         <Form>
@@ -84,13 +87,18 @@ const NewEventFormBody = (props) => {
 
                 <div>
                     <Label>Color</Label>
-                    <Input type="select" name="select" id="exampleSelect">
-                        <option>Blue</option>
-                        <option>Gray</option>
-                        <option>Green</option>
-                        <option>Red</option>
-                        <option>Yellow</option>
-                    </Input>
+                    <select 
+                        value={color}
+                        className="form-control"
+                        onChange={(e) => setColor(e.target.value)}
+                    >
+                        {/*Put this Options as a Array and use map to render*/}
+                        <option value='blue'>Blue</option>
+                        <option value='gray'>Gray</option>
+                        <option value='green'>Green</option>
+                        <option value='red'>Red</option>
+                        <option value='yellow'>Yellow</option>
+                    </select>
                 </div>
             </FormGroup>
 
