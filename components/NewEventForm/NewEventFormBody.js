@@ -18,6 +18,7 @@ const NewEventFormBody = (props) => {
     const [ endTime, setEndTime ] = useState(currentEvent.end);
     const [ city, setCity ] = useState(currentEvent.city);
     const [ color, setColor ] = useState(currentEvent.color);
+    const [ id, setId ] = useState(currentEvent.id); //It is needed to not lose the ID when change other data
 
     //Check the size of description
     const [descriptionLengthReached, setDescriptionLengthReached] = useState(false);
@@ -36,9 +37,10 @@ const NewEventFormBody = (props) => {
     //Update currentEvent contexts with the Form data    
     useEffect(() => {
         setCurrentEvent({
+            id: id,
             description: eventDescription,
             start: startTime,
-            end: endTime, //It is needed to validated if endTime is later than startTime
+            end: endTime,
             city: city,
             color: color,
             day: props.day

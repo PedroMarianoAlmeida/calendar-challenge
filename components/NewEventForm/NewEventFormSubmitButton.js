@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from 'react';
 
 //Third part components
 import { Button } from 'reactstrap';
+import { v4 } from 'uuid';
 
 //My components
 import { EventContext } from './../../contexts/EventContext';
@@ -28,8 +29,16 @@ const NewEventFormSubmitButton = (props) => {
 
     const handleClick = () => {
         console.log(currentEvent);
-        const newEventList = [...eventsList, currentEvent];
-        setEventsList(newEventList);
+        if(currentEvent.id === ''){
+            console.log('dentro');
+            currentEvent.id = v4();
+            const newEventList = [...eventsList, currentEvent];
+            setEventsList(newEventList);
+        }
+        else{
+            //Find the event and insert the new values
+        }
+
         clearCurrentEvent();      
         props.toggle();
     }
