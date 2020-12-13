@@ -8,7 +8,10 @@ import { Button } from 'reactstrap';
 import { EventContext } from './../../contexts/EventContext';
 
 const NewEventFormSubmitButton = (props) => {
-    const { currentEvent, setCurrentEvent, eventsList, setEventsList } = useContext(EventContext);
+    const { currentEvent, 
+            eventsList, 
+            setEventsList,
+            clearCurrentEvent } = useContext(EventContext);
     const [ disableSubmit, setDisableSubmit ] = useState(true);
 
     useEffect(() => {
@@ -25,8 +28,7 @@ const NewEventFormSubmitButton = (props) => {
         console.log(currentEvent);
         const newEventList = [...eventsList, currentEvent];
         setEventsList(newEventList);
-        //Put this code line in the Context as "Clear Current Event"
-        setCurrentEvent( {description: '', start:'', end:'', city:'', color:'blue'} );        
+        clearCurrentEvent();      
         props.toggle();
     }
 
