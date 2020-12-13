@@ -9,14 +9,7 @@ import NewEventFormBody from '../NewEventForm/NewEventFormBody';
 import NewEventFormSubmitButton from './../NewEventForm/NewEventFormSubmitButton';
 import EventSummary from './../ExistentEvent/EventSummary';
 import { EventContext } from './../../contexts/EventContext';
-
-//Source: https://stackoverflow.com/a/36351753/12828114
-const convertHourToDecimal = (timeHourFormat) => {
-    let hoursMinutes = timeHourFormat.split(/[.:]/);
-    let hours = parseInt(hoursMinutes[0], 10);
-    let minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
-    return hours + minutes / 60;
-}
+import convertHourToDecimal from './../../functions/convertHourToDecimal';
 
 const CalendarDay = (props) => {
     const { eventsList } = useContext(EventContext);

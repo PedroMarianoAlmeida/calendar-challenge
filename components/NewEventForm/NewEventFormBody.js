@@ -4,25 +4,35 @@ import { useState, useEffect, useContext } from 'react';
 //Third part components
 import { Form, FormGroup, Label, Input, Tooltip } from 'reactstrap';
 
-//My components
+//My components and functions
 import { EventContext } from './../../contexts/EventContext';
+import convertHourToDecimal from './../../functions/convertHourToDecimal';
+
+const maxLengthDescription = 30;
 
 const NewEventFormBody = (props) => {  
-    const { currentEvent, setCurrentEvent } = useContext(EventContext);
+    const { currentEvent, setCurrentEvent } = useContext(EventContext);   
     
     const [eventDescription, setEventDescription] = useState(currentEvent.description);
-    const [descriptionLengthReached, setDescriptionLengthReached] = useState(false);
-
-    const handleEventDescriptionChange = (e) => {
-        const showWarning = e.target.value.length > 30;
-        setDescriptionLengthReached(showWarning);
-        setEventDescription(e.target.value);
-    }
-
     const [ startTime, setStartTime ] = useState(currentEvent.start);
     const [ endTime, setEndTime ] = useState(currentEvent.end);
     const [ city, setCity ] = useState(currentEvent.city);
     const [ color, setColor ] = useState(currentEvent.color);
+
+    //Check the size of description
+    const [descriptionLengthReached, setDescriptionLengthReached] = useState(false);
+    useEffect(() => {
+        const showWarning = eventDescription.length > maxLengthDescription;
+        setDescriptionLengthReached(showWarning);
+    },[eventDescription])
+
+    //Check if end time is higher than start time
+    const [descriptioEndLaterThanStart, setDescriptioEndLaterThanStart] = useState(false); 
+    useEffect(() => {
+        const showWarning = endTime !== '' && startTime !== '' && convertHourToDecimal(endTime) < convertHourToDecimal(startTime);
+        console.log(`${convertHourToDecimal(endTime)} < ${convertHourToDecimal(startTime)} = ${showWarning}`);
+        setDescriptioEndLaterThanStart(showWarning);
+    }, [startTime, endTime])
 
     //Update currentEvent contexts with the Form data    
     useEffect(() => {
@@ -50,7 +60,7 @@ const NewEventFormBody = (props) => {
                         placeholder="Eg.: First day in a new Job"
                         className='form-control'
                         value={eventDescription}
-                        onChange={handleEventDescriptionChange}
+                        onChange={(e) => setEventDescription(e.target.value)}
                     />
                 </div>
 
@@ -65,7 +75,10 @@ const NewEventFormBody = (props) => {
                 </div>
 
                 <div className='mb-4'>
-                    <Label>End time</Label>
+                    <Label id="end-time-warning">End time</Label>
+                    <Tooltip placement="right" isOpen={descriptioEndLaterThanStart} target="end-time-warning">
+                        End time should be later than start time
+                    </Tooltip>
                     <Input
                         type="time"
                         placeholder="time placeholder"
