@@ -12,20 +12,19 @@ import { EventContext } from './../../contexts/EventContext';
 import convertHourToDecimal from './../../functions/convertHourToDecimal';
 
 const CalendarDay = (props) => {
-    const { eventsList } = useContext(EventContext);
+    const { eventsList, displayEventForm, setDisplayEventForm } = useContext(EventContext);
     const eventsInThisDay = eventsList.filter(event => event.day === props.day);
     const eventsSorted = eventsInThisDay.sort( (a, b) => convertHourToDecimal(a.start) - convertHourToDecimal(b.start));
     
-    const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
+    const toggle = () => setDisplayEventForm(!displayEventForm);
 
     return <>
-        <td onClick={() => setModal(true)} className='border'>
+        <td onClick={() => setDisplayEventForm(true)} className='border'>
             <strong>{props.day}</strong>
             {eventsSorted.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}           
         </td>
 
-        <Modal isOpen={modal} toggle={toggle}>
+        <Modal isOpen={displayEventForm} toggle={toggle}>
             <ModalHeader toggle={toggle}>Reminder day {props.day}</ModalHeader>
             <ModalBody>
                 <NewEventFormBody day={props.day}/>
