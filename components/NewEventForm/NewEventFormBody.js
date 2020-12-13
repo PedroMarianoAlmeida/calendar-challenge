@@ -30,7 +30,6 @@ const NewEventFormBody = (props) => {
     const [descriptioEndLaterThanStart, setDescriptioEndLaterThanStart] = useState(false); 
     useEffect(() => {
         const showWarning = endTime !== '' && startTime !== '' && convertHourToDecimal(endTime) < convertHourToDecimal(startTime);
-        console.log(`${convertHourToDecimal(endTime)} < ${convertHourToDecimal(startTime)} = ${showWarning}`);
         setDescriptioEndLaterThanStart(showWarning);
     }, [startTime, endTime])
 

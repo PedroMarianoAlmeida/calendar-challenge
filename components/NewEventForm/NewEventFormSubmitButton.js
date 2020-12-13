@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 
 //My components
 import { EventContext } from './../../contexts/EventContext';
+import convertHourToDecimal from '../../functions/convertHourToDecimal';
 
 const NewEventFormSubmitButton = (props) => {
     const { currentEvent, 
@@ -19,9 +20,10 @@ const NewEventFormSubmitButton = (props) => {
         const descriptionLong = currentEvent.description.length > 30;
         const startEmpty = Boolean(currentEvent.start === '');
         const endEmpty = Boolean(currentEvent.end === '');
+        const endLaterThanStart = convertHourToDecimal(currentEvent.end) < convertHourToDecimal(currentEvent.start);
         const cityEmpty = Boolean(currentEvent.city === '');
 
-        setDisableSubmit(descriptionLong || descriptionEmpty || startEmpty || endEmpty || cityEmpty);
+        setDisableSubmit(descriptionLong || descriptionEmpty || startEmpty || endEmpty || endLaterThanStart || cityEmpty);
     }, [currentEvent])
 
     const handleClick = () => {
