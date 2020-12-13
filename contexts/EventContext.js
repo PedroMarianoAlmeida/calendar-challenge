@@ -4,7 +4,7 @@ export const EventContext = createContext();
 
 const EventProvider = (props) => {
     
-    const [ currentEvent, setCurrentEvent ] = useState({description: '', start:'', end:'', city:'', day:'', color:'blue'});  
+    const [ currentEvent, setCurrentEvent ] = useState({description: '', start:'', end:'', city:'', day:'', color:'#1b8998'});  
     const [ eventsList, setEventsList ] = useState([]);
 
     useEffect(() => {

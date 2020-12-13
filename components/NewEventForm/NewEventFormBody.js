@@ -87,18 +87,13 @@ const NewEventFormBody = (props) => {
 
                 <div>
                     <Label>Color</Label>
-                    <select 
+                    <input
+                        type="color" 
                         value={color}
                         className="form-control"
                         onChange={(e) => setColor(e.target.value)}
-                    >
-                        {/*Put this Options as a Array and use map to render*/}
-                        <option value='blue'>Blue</option>
-                        <option value='gray'>Gray</option>
-                        <option value='green'>Green</option>
-                        <option value='red'>Red</option>
-                        <option value='yellow'>Yellow</option>
-                    </select>
+                    />
+                    
                 </div>
             </FormGroup>
 
