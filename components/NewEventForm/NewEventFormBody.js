@@ -71,7 +71,7 @@ const NewEventFormBody = (props) => {
                     />
                 </div>
 
-                <div>
+                <div className='mb-4'>
                     <Label>City</Label>
                     <input 
                         type='text' 
@@ -80,6 +80,17 @@ const NewEventFormBody = (props) => {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
+                </div>
+
+                <div>
+                    <Label>Color</Label>
+                    <Input type="select" name="select" id="exampleSelect">
+                        <option>Blue</option>
+                        <option>Gray</option>
+                        <option>Green</option>
+                        <option>Red</option>
+                        <option>Yellow</option>
+                    </Input>
                 </div>
             </FormGroup>
 
