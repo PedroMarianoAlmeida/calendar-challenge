@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 export const EventContext = createContext();
 
 const defaultEventColor = '#1b8998';
-const currentEventEmpty = {id:'', description: '', start:'', end:'', city:'', day:'', color: defaultEventColor}
+const currentEventEmpty = {id:'', description: '', start:'', end:'', city:'', day:'', color: defaultEventColor, weather: {} }
 
 const EventProvider = (props) => {
     

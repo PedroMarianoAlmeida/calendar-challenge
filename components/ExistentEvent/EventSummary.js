@@ -29,7 +29,7 @@ const EventSummary = (props) => {
 
     return (
         <>
-            <button
+            <div
                 id={identifier} 
                 type="button" 
                 onClick={(e) => e.stopPropagation()}
@@ -37,8 +37,9 @@ const EventSummary = (props) => {
                 style={{ backgroundColor: props.event.color }}
                 ref={trackToClick}
             >
-                {sumaryTextBox}
-            </button>
+                <span><img src={`http://openweathermap.org/img/wn/${props.event.weather.icon}.png`}/></span>
+                <span>{sumaryTextBox}</span>
+            </div>
 
             <UncontrolledPopover trigger="click" placement="bottom" target={identifier}>
                 <PopoverHeader className='text-center'>{props.event.description}</PopoverHeader>
@@ -46,6 +47,7 @@ const EventSummary = (props) => {
                     <ul>
                         <li><u>Where:</u> {props.event.city}</li>
                         <li> <u>When:</u> {props.event.start} to {props.event.end}</li>
+                        <li> <u>Weather:</u> {props.event.weather.description}</li>
                     </ul>
                     <hr />
                     <Button 
