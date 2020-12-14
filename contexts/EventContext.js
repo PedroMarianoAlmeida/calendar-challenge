@@ -12,8 +12,6 @@ const EventProvider = (props) => {
     const [ eventsList, setEventsList ] = useState([]);
     const [displayEventForm, setDisplayEventForm] = useState(false);
 
-    console.log(currentDay);
-
     const clearCurrentEvent = () => setCurrentEvent({...currentEventEmpty});
 
     useEffect(() => {

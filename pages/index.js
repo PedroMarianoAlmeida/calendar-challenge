@@ -7,6 +7,7 @@ import { Container, Table } from 'reactstrap';
 //My components
 import CalendarHead from './../components/calendar/CalendarHead';
 import CalendarDay from './../components/calendar/CalendarDay';
+import EventForm from './../components/NewEventForm/EventForm';
 
 export default function Home() {
   return (
@@ -35,6 +36,9 @@ export default function Home() {
             </tbody>
 
           </Table>
+
+          <EventForm />
+
         </Container>
       </main>
     </div>

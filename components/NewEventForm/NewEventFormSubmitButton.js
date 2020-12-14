@@ -30,16 +30,18 @@ const NewEventFormSubmitButton = (props) => {
     const handleClick = () => {
         console.log(currentEvent);
         if(currentEvent.id === ''){
-            console.log('dentro');
             currentEvent.id = v4();
             const newEventList = [...eventsList, currentEvent];
             setEventsList(newEventList);
+            
         }
         else{
+            const eventToEdit = eventsList.filter(event => event.id === currentEvent.id)[0];
+            console.log(eventToEdit, currentEvent);
             //Find the event and insert the new values
         }
 
-        clearCurrentEvent();      
+        clearCurrentEvent(); 
         props.toggle();
     }
 
