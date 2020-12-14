@@ -14,8 +14,7 @@ const EventSummary = (props) => {
     const trackToClick = useRef(null);
     //console.log('props summary: ',props.event);
     
-    //Unique ID to link the Popover with the sumary box (this replace I got from https://stackoverflow.com/a/13020280/12828114)
-    const identifier = (props.event.description + props.event.start + props.event.end + props.event.city ).replace(/[^A-Z0-9]/ig, "");
+    const identifier = "a" + props.event.id;
     
     const sizeCurrentDescription = props.event.description.length;
     const sumaryTextBox = sizeCurrentDescription > charBreakPoint ? `${props.event.description.substring(0, charBreakPoint)}...` : props.event.description; 
