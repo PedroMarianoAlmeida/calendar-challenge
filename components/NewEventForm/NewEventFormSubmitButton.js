@@ -9,6 +9,24 @@ import { v4 } from 'uuid';
 import { EventContext } from './../../contexts/EventContext';
 import convertHourToDecimal from '../../functions/convertHourToDecimal';
 
+const getWhatherForecast = async(cityName, date) => {
+    const toDay = new Date();
+    const currentDate = toDay.getDate();
+    const forecastIndex = date - currentDate;
+    console.log(forecastIndex);
+    try{
+        const coordenatesResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&key=AIzaSyAqE2wsmY5N38AycUU_j8lk8Bgqk7wcMs4`);
+        const coordenateData = await coordenatesResponse.json();
+        const coordenateDataTreated = coordenateData.results[0].geometry.location;
+
+        const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordenateDataTreated.lat}&lon=${coordenateDataTreated.lng}&exclude=hourly,minutely&appid=f398ec29dd385ce8c20829de8b6e297a`)
+        const weatherData = await weatherResponse.json();
+        const watherDataTreated = weatherData.daily[forecastIndex].weather[0];
+    }
+    catch{}
+    
+}
+
 const NewEventFormSubmitButton = (props) => {
     const { currentEvent, 
             eventsList, 
@@ -27,10 +45,10 @@ const NewEventFormSubmitButton = (props) => {
         setDisableSubmit(descriptionLong || descriptionEmpty || startEmpty || endEmpty || endLaterThanStart || cityEmpty);
     }, [currentEvent])
 
-    const handleClick = () => {
+    const handleClick = async() => {
         //If it is an existent event, find and delete it (in sequence a new event object will be created in inserted on eventList)
         const currentEventList = [...eventsList];
-        
+        await getWhatherForecast(currentEvent.city, currentEvent.day);
         if(currentEvent.id !== ''){
             const eventIndex = eventsList.findIndex(event => event.id === currentEvent.id)
             currentEventList.splice(eventIndex, 1);          

@@ -26,8 +26,8 @@ export default function Home() {
               <tr className='text-center'>
                 <td>29</td>
                 <td>30</td>
-                <CalendarDay day={1}/>
-                <CalendarDay day={2}/>
+                <CalendarDay day={14}/>
+                <CalendarDay day={15}/>
                 <td>3</td>
                 <td>4</td>
                 <td>5</td>
