@@ -7,9 +7,12 @@ const currentEventEmpty = {id:'', description: '', start:'', end:'', city:'', da
 
 const EventProvider = (props) => {
     
-    const [ currentEvent, setCurrentEvent ] = useState({...currentEventEmpty});  
+    const [ currentEvent, setCurrentEvent ] = useState({id:'', description: '', start:'', end:'', city:'', day:'', color: defaultEventColor});  
+    const [currentDay, setCurrentDay] = useState('');
     const [ eventsList, setEventsList ] = useState([]);
     const [displayEventForm, setDisplayEventForm] = useState(false);
+
+    console.log(currentDay);
 
     const clearCurrentEvent = () => setCurrentEvent({...currentEventEmpty});
 
@@ -26,7 +29,9 @@ const EventProvider = (props) => {
             eventsList, 
             setEventsList,
             displayEventForm, 
-            setDisplayEventForm
+            setDisplayEventForm,
+            currentDay, 
+            setCurrentDay
           }}
         >
              {props.children}
