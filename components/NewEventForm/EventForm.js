@@ -11,9 +11,12 @@ import NewEventFormSubmitButton from './NewEventFormSubmitButton';
 import { EventContext } from './../../contexts/EventContext';
 
 const EventForm = () => {
-    const { eventsList, displayEventForm, setDisplayEventForm, currentDay, setCurrentDay } = useContext(EventContext);
-    const toggle = () => setDisplayEventForm(!displayEventForm);
-    
+    const { clearCurrentEvent, displayEventForm, setDisplayEventForm, currentDay } = useContext(EventContext);
+    const toggle = () => {
+        setDisplayEventForm(!displayEventForm);
+        clearCurrentEvent();
+    }
+
     return (
         <Modal isOpen={displayEventForm} toggle={toggle}>
             <ModalHeader toggle={toggle}>Reminder day {currentDay}</ModalHeader>

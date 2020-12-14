@@ -28,18 +28,17 @@ const NewEventFormSubmitButton = (props) => {
     }, [currentEvent])
 
     const handleClick = () => {
-        console.log(currentEvent);
-        if(currentEvent.id === ''){
-            currentEvent.id = v4();
-            const newEventList = [...eventsList, currentEvent];
-            setEventsList(newEventList);
-            
+        //If it is an existent event, find and delete it (in sequence a new event object will be created in inserted on eventList)
+        const currentEventList = [...eventsList];
+        
+        if(currentEvent.id !== ''){
+            const eventIndex = eventsList.findIndex(event => event.id === currentEvent.id)
+            currentEventList.splice(eventIndex, 1);          
         }
-        else{
-            const eventToEdit = eventsList.filter(event => event.id === currentEvent.id)[0];
-            console.log(eventToEdit, currentEvent);
-            //Find the event and insert the new values
-        }
+
+        currentEvent.id = v4();
+        const newEventList = [...currentEventList, currentEvent];
+        setEventsList(newEventList);
 
         clearCurrentEvent(); 
         props.toggle();
