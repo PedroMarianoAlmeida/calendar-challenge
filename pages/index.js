@@ -6,7 +6,7 @@ import { Container, Table } from 'reactstrap';
 
 //My components
 import CalendarHead from './../components/calendar/CalendarHead';
-import CalendarDay from './../components/calendar/CalendarDay';
+import CalendarBody from './../components/calendar/CalendarBody';
 import EventForm from './../components/NewEventForm/EventForm';
 
 export default function Home() {
@@ -21,20 +21,7 @@ export default function Home() {
         <Container>
           <Table>
             <CalendarHead />
-
-            <tbody>
-              <tr className='text-center'>
-                <td>29</td>
-                <td>30</td>
-                <CalendarDay day={14}/>
-                <CalendarDay day={15}/>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-              </tr>
-
-            </tbody>
-
+            <CalendarBody startDate='2020/11/29' endDate='2021/01/02' year='2020' month='12'/>
           </Table>
 
           <EventForm />

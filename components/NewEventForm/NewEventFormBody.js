@@ -58,7 +58,7 @@ const NewEventFormBody = (props) => {
                     </Tooltip>
                     <input
                         type='text'
-                        placeholder="Eg.: First day in a new Job"
+                        placeholder="Eg.: First day at new Job"
                         className='form-control'
                         value={eventDescription}
                         onChange={(e) => setEventDescription(e.target.value)}
@@ -78,7 +78,7 @@ const NewEventFormBody = (props) => {
                 <div className='mb-4'>
                     <Label id="end-time-warning">End time</Label>
                     <Tooltip placement="right" isOpen={descriptioEndLaterThanStart} target="end-time-warning">
-                        End time should be later than start time
+                        End time should be after the start time
                     </Tooltip>
                     <Input
                         type="time"
