@@ -13,6 +13,7 @@ const getWhatherForecast = async(cityName, date) => {
     const toDay = new Date();
     const currentDate = toDay.getDate();
     const forecastIndex = date - currentDate;
+    if (forecastIndex < 0 || forecastIndex > 7) return //Theses cases the API doesn't have the data, so is not need to call it
     try{
         const coordenatesResponse = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${cityName}&key=AIzaSyAqE2wsmY5N38AycUU_j8lk8Bgqk7wcMs4`);
         const coordenateData = await coordenatesResponse.json();
