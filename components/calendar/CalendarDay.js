@@ -17,13 +17,20 @@ const CalendarDay = (props) => {
     }
 
     return <>
-        <td onClick={newEventForm} className={`border ${props.weekend && 'weekend'}`}>
-            <strong className={props.outRange && 'text-muted'}>{props.day}</strong>
-            {eventsSorted.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}           
-        </td>
+        {props.outRange ? 
+            <td className={`border ${props.weekend && 'weekend'}`}>
+                <strong className='text-muted'>{props.day}</strong>
+            </td> :
+
+            <td onClick={newEventForm} className={`border ${props.weekend && 'weekend'} in-range`}>
+                    <strong>{props.day}</strong>
+                    {eventsSorted.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}
+                        
+            </td>
+        }
 
         <style jsx>{`                
-            td:hover {
+            td.in-range:hover {
                 cursor: crosshair;
             }
 
