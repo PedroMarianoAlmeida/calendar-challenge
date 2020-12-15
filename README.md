@@ -24,3 +24,5 @@ Click [here](https://calendar-challenge.vercel.app/) to see the result.
 1. The API Keys are display in the getWhatherForecast function (inside NewEventFormSubmitButton.js) because is a requirement of the challenge to provide working API keys, but the correct way to leave API Keys is to set them as environment variables.
 
 1. The catch block in the getWhatherForecast function (inside NewEventFormSubmitButton.js) is empty because in case of error happens in the Whether Forecast object, its data is not fulfilled and this case is predicted in the EventSummary component.
+
+1. For state management I used useContext + useState.

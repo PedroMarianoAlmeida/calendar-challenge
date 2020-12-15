@@ -36,7 +36,14 @@ const EventSummary = (props) => {
                 style={{ backgroundColor: props.event.color }}
                 ref={trackToClick}
             >
-                {typeof props.event.weather !== 'undefined' && <span><img src={`http://openweathermap.org/img/wn/${props.event.weather.icon}.png`}/></span> }
+                { typeof props.event.weather !== 'undefined' && 
+                    <span>
+                        <img 
+                            src={`http://openweathermap.org/img/wn/${props.event.weather.icon}.png`}
+                            alt={props.event.weather.description}
+                        />
+                    </span>
+                }
                 <span>{sumaryTextBox}</span>
             </div>
 
