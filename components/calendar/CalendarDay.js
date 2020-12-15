@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import EventSummary from './../ExistentEvent/EventSummary';
 import { EventContext } from './../../contexts/EventContext';
 import convertHourToDecimal from './../../functions/convertHourToDecimal';
+import DeleteAllEventsInSpecificDay from './../ExistentEvent/DeleteAllEventsInSpecificDay';
 
 const CalendarDay = (props) => {
     const { eventsList, setDisplayEventForm, setCurrentDay } = useContext(EventContext);
@@ -25,7 +26,7 @@ const CalendarDay = (props) => {
             <td onClick={newEventForm} className={`border ${props.weekend && 'weekend'} in-range`}>
                     <strong>{props.day}</strong>
                     {eventsSorted.map(event => <div key={JSON.stringify(event)}><EventSummary event={event}/></div>)}
-                        
+                    {eventsInThisDay.length > 1 && <DeleteAllEventsInSpecificDay day={props.day} /> }    
             </td>
         }
 
