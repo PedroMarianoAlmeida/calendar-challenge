@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "jest": "^26.6.3",
     "next": "10.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
